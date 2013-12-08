@@ -1,0 +1,78 @@
+# Locate ffmpeg libraries
+# This module defines
+# FFMPEG_LIBRARIES, the name of the library to link against
+# FFMPEG_FOUND, if false, do not try to link to SDL
+# FFMPEG_INCLUDE_DIR, where to find libavcode/avcodec.h
+#
+# $SDL2DIR is an environment variable that would
+# correspond to the ./configure --prefix=$SDL2DIR
+# used in building SDL2.
+#
+# Created by Eric Wing. This was influenced by the FindSDL.cmake 
+# module, but with modifications to recognize OS X frameworks and 
+# additional Unix paths (FreeBSD, etc).
+
+
+FIND_PATH(FFMPEG_INCLUDE_DIR libavcodec/avcodec.h
+  PATHS
+  $ENV{FFMPEG_DIR}
+  NO_DEFAULT_PATH
+  PATH_SUFFIXES include
+)
+
+FIND_LIBRARY(FFMPEG_AVDEVICE_LIBRARY 
+  NAMES avdevice
+  PATHS
+  $ENV{FFMPEG_DIR}
+  NO_DEFAULT_PATH
+    PATH_SUFFIXES lib64 lib
+)
+
+FIND_LIBRARY(FFMPEG_AVFORMAT_LIBRARY 
+  NAMES avformat
+  PATHS
+  $ENV{FFMPEG_DIR}
+  NO_DEFAULT_PATH
+    PATH_SUFFIXES lib64 lib
+)
+
+FIND_LIBRARY(FFMPEG_AVCODEC_LIBRARY 
+  NAMES avcodec
+  PATHS
+  $ENV{FFMPEG_DIR}
+  NO_DEFAULT_PATH
+    PATH_SUFFIXES lib64 lib
+)
+
+FIND_LIBRARY(FFMPEG_AVUTIL_LIBRARY 
+  NAMES avutil
+  PATHS
+  $ENV{FFMPEG_DIR}
+  NO_DEFAULT_PATH
+    PATH_SUFFIXES lib64 lib
+)
+
+FIND_LIBRARY(FFMPEG_SWSCALE_LIBRARY 
+  NAMES swscale
+  PATHS
+  $ENV{FFMPEG_DIR}
+  NO_DEFAULT_PATH
+    PATH_SUFFIXES lib64 lib
+)
+
+SET(FFMPEG_FOUND "NO")
+IF(FFMPEG_AVDEVICE_LIBRARY AND 
+    FFMPEG_AVFORMAT_LIBRARY AND 
+    FFMPEG_AVCODEC_LIBRARY AND 
+    FFMPEG_AVUTIL_LIBRARY AND 
+    FFMPEG_SWSCALE_LIBRARY AND 
+    SDL2TTF_INCLUDE_DIR)
+  SET(FFMPEG_FOUND "YES")
+ENDIF(FFMPEG_AVDEVICE_LIBRARY AND 
+    FFMPEG_AVFORMAT_LIBRARY AND 
+    FFMPEG_AVCODEC_LIBRARY AND 
+    FFMPEG_AVUTIL_LIBRARY AND 
+    FFMPEG_SWSCALE_LIBRARY AND 
+    SDL2TTF_INCLUDE_DIR)
+
+SET(FFMPEG_LIBRARIES ${FFMPEG_AVDEVICE_LIBRARY} ${FFMPEG_AVFORMAT_LIBRARY} ${FFMPEG_AVCODEC_LIBRARY} ${FFMPEG_AVUTIL_LIBRARY} ${FFMPEG_SWSCALE_LIBRARY})
