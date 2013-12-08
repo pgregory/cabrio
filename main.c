@@ -46,6 +46,8 @@ void bail( void ) {
 	exit( -1 );
 }
 
+extern Uint32 lastTick;
+
 int main( int argc, char *arvg[] ) {
 	int quit = 0;
 	int config_status = 0;
@@ -134,6 +136,9 @@ int main( int argc, char *arvg[] ) {
 	focus_set( FOCUS_GAMESEL );
 
 	while( !quit ) {
+
+		sdl_begin_frame();
+
 		ogl_clear();
 		bg_draw();
 		snap_draw();

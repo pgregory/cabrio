@@ -1,5 +1,6 @@
 #include "key.h"
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_keycode.h>
 
 /* Big list o' key names. These are just the SDLK_* macros with their prefix chopped off. */
 static const char *key_name_backspace = "backspace";
@@ -310,7 +311,7 @@ int key_id( char *name ) {
 	else if( strcasecmp( name, key_name_y ) == 0 )return SDLK_y;
 	else if( strcasecmp( name, key_name_z ) == 0 )return SDLK_z;
 	else if( strcasecmp( name, key_name_delete ) == 0 )return SDLK_DELETE;
-	else if( strcasecmp( name, key_name_world_0 ) == 0 )return SDLK_WORLD_0;
+/*	else if( strcasecmp( name, key_name_world_0 ) == 0 )return SDLK_WORLD_0;
 	else if( strcasecmp( name, key_name_world_1 ) == 0 )return SDLK_WORLD_1;
 	else if( strcasecmp( name, key_name_world_2 ) == 0 )return SDLK_WORLD_2;
 	else if( strcasecmp( name, key_name_world_3 ) == 0 )return SDLK_WORLD_3;
@@ -405,17 +406,17 @@ int key_id( char *name ) {
 	else if( strcasecmp( name, key_name_world_92 ) == 0 )return SDLK_WORLD_92;
 	else if( strcasecmp( name, key_name_world_93 ) == 0 )return SDLK_WORLD_93;
 	else if( strcasecmp( name, key_name_world_94 ) == 0 )return SDLK_WORLD_94;
-	else if( strcasecmp( name, key_name_world_95 ) == 0 )return SDLK_WORLD_95;
-	else if( strcasecmp( name, key_name_kp0 ) == 0 )return SDLK_KP0;
-	else if( strcasecmp( name, key_name_kp1 ) == 0 )return SDLK_KP1;
-	else if( strcasecmp( name, key_name_kp2 ) == 0 )return SDLK_KP2;
-	else if( strcasecmp( name, key_name_kp3 ) == 0 )return SDLK_KP3;
-	else if( strcasecmp( name, key_name_kp4 ) == 0 )return SDLK_KP4;
-	else if( strcasecmp( name, key_name_kp5 ) == 0 )return SDLK_KP5;
-	else if( strcasecmp( name, key_name_kp6 ) == 0 )return SDLK_KP6;
-	else if( strcasecmp( name, key_name_kp7 ) == 0 )return SDLK_KP7;
-	else if( strcasecmp( name, key_name_kp8 ) == 0 )return SDLK_KP8;
-	else if( strcasecmp( name, key_name_kp9 ) == 0 )return SDLK_KP9;
+	else if( strcasecmp( name, key_name_world_95 ) == 0 )return SDLK_WORLD_95;*/
+	else if( strcasecmp( name, key_name_kp0 ) == 0 )return SDLK_KP_0;
+	else if( strcasecmp( name, key_name_kp1 ) == 0 )return SDLK_KP_1;
+	else if( strcasecmp( name, key_name_kp2 ) == 0 )return SDLK_KP_2;
+	else if( strcasecmp( name, key_name_kp3 ) == 0 )return SDLK_KP_3;
+	else if( strcasecmp( name, key_name_kp4 ) == 0 )return SDLK_KP_4;
+	else if( strcasecmp( name, key_name_kp5 ) == 0 )return SDLK_KP_5;
+	else if( strcasecmp( name, key_name_kp6 ) == 0 )return SDLK_KP_6;
+	else if( strcasecmp( name, key_name_kp7 ) == 0 )return SDLK_KP_7;
+	else if( strcasecmp( name, key_name_kp8 ) == 0 )return SDLK_KP_8;
+	else if( strcasecmp( name, key_name_kp9 ) == 0 )return SDLK_KP_9;
 	else if( strcasecmp( name, key_name_kp_period ) == 0 )return SDLK_KP_PERIOD;
 	else if( strcasecmp( name, key_name_kp_divide ) == 0 )return SDLK_KP_DIVIDE;
 	else if( strcasecmp( name, key_name_kp_multiply ) == 0 )return SDLK_KP_MULTIPLY;
@@ -447,28 +448,28 @@ int key_id( char *name ) {
 	else if( strcasecmp( name, key_name_f13 ) == 0 )return SDLK_F13;
 	else if( strcasecmp( name, key_name_f14 ) == 0 )return SDLK_F14;
 	else if( strcasecmp( name, key_name_f15 ) == 0 )return SDLK_F15;
-	else if( strcasecmp( name, key_name_numlock ) == 0 )return SDLK_NUMLOCK;
+	else if( strcasecmp( name, key_name_numlock ) == 0 )return SDLK_NUMLOCKCLEAR;
 	else if( strcasecmp( name, key_name_capslock ) == 0 )return SDLK_CAPSLOCK;
-	else if( strcasecmp( name, key_name_scrollock ) == 0 )return SDLK_SCROLLOCK;
+	else if( strcasecmp( name, key_name_scrollock ) == 0 )return SDLK_SCROLLLOCK;
 	else if( strcasecmp( name, key_name_rshift ) == 0 )return SDLK_RSHIFT;
 	else if( strcasecmp( name, key_name_lshift ) == 0 )return SDLK_LSHIFT;
 	else if( strcasecmp( name, key_name_rctrl ) == 0 )return SDLK_RCTRL;
 	else if( strcasecmp( name, key_name_lctrl ) == 0 )return SDLK_LCTRL;
 	else if( strcasecmp( name, key_name_ralt ) == 0 )return SDLK_RALT;
 	else if( strcasecmp( name, key_name_lalt ) == 0 )return SDLK_LALT;
-	else if( strcasecmp( name, key_name_rmeta ) == 0 )return SDLK_RMETA;
+/*	else if( strcasecmp( name, key_name_rmeta ) == 0 )return SDLK_RMETA;
 	else if( strcasecmp( name, key_name_lmeta ) == 0 )return SDLK_LMETA;
 	else if( strcasecmp( name, key_name_lsuper ) == 0 )return SDLK_LSUPER;
-	else if( strcasecmp( name, key_name_rsuper ) == 0 )return SDLK_RSUPER;
+	else if( strcasecmp( name, key_name_rsuper ) == 0 )return SDLK_RSUPER;*/
 	else if( strcasecmp( name, key_name_mode ) == 0 )return SDLK_MODE;
-	else if( strcasecmp( name, key_name_compose ) == 0 )return SDLK_COMPOSE;
+/*	else if( strcasecmp( name, key_name_compose ) == 0 )return SDLK_COMPOSE;*/
 	else if( strcasecmp( name, key_name_help ) == 0 )return SDLK_HELP;
-	else if( strcasecmp( name, key_name_print ) == 0 )return SDLK_PRINT;
+	else if( strcasecmp( name, key_name_print ) == 0 )return SDLK_PRINTSCREEN;
 	else if( strcasecmp( name, key_name_sysreq ) == 0 )return SDLK_SYSREQ;
-	else if( strcasecmp( name, key_name_break ) == 0 )return SDLK_BREAK;
+/*	else if( strcasecmp( name, key_name_break ) == 0 )return SDLK_BREAK;*/
 	else if( strcasecmp( name, key_name_menu ) == 0 )return SDLK_MENU;
 	else if( strcasecmp( name, key_name_power ) == 0 )return SDLK_POWER;
-	else if( strcasecmp( name, key_name_euro ) == 0 )return SDLK_EURO;
+/*	else if( strcasecmp( name, key_name_euro ) == 0 )return SDLK_EURO;*/
 	else if( strcasecmp( name, key_name_undo ) == 0 )return SDLK_UNDO;
 	return 0;
 }
@@ -546,7 +547,7 @@ const char *key_name( int key ) {
 		case SDLK_y: return key_name_y;
 		case SDLK_z: return key_name_z;
 		case SDLK_DELETE: return key_name_delete;
-		case SDLK_WORLD_0: return key_name_world_0;
+/*		case SDLK_WORLD_0: return key_name_world_0;
 		case SDLK_WORLD_1: return key_name_world_1;
 		case SDLK_WORLD_2: return key_name_world_2;
 		case SDLK_WORLD_3: return key_name_world_3;
@@ -641,17 +642,17 @@ const char *key_name( int key ) {
 		case SDLK_WORLD_92: return key_name_world_92;
 		case SDLK_WORLD_93: return key_name_world_93;
 		case SDLK_WORLD_94: return key_name_world_94;
-		case SDLK_WORLD_95: return key_name_world_95;
-		case SDLK_KP0: return key_name_kp0;
-		case SDLK_KP1: return key_name_kp1;
-		case SDLK_KP2: return key_name_kp2;
-		case SDLK_KP3: return key_name_kp3;
-		case SDLK_KP4: return key_name_kp4;
-		case SDLK_KP5: return key_name_kp5;
-		case SDLK_KP6: return key_name_kp6;
-		case SDLK_KP7: return key_name_kp7;
-		case SDLK_KP8: return key_name_kp8;
-		case SDLK_KP9: return key_name_kp9;
+		case SDLK_WORLD_95: return key_name_world_95;*/
+		case SDLK_KP_0: return key_name_kp0;
+		case SDLK_KP_1: return key_name_kp1;
+		case SDLK_KP_2: return key_name_kp2;
+		case SDLK_KP_3: return key_name_kp3;
+		case SDLK_KP_4: return key_name_kp4;
+		case SDLK_KP_5: return key_name_kp5;
+		case SDLK_KP_6: return key_name_kp6;
+		case SDLK_KP_7: return key_name_kp7;
+		case SDLK_KP_8: return key_name_kp8;
+		case SDLK_KP_9: return key_name_kp9;
 		case SDLK_KP_PERIOD: return key_name_kp_period;
 		case SDLK_KP_DIVIDE: return key_name_kp_divide;
 		case SDLK_KP_MULTIPLY: return key_name_kp_multiply;
@@ -683,28 +684,28 @@ const char *key_name( int key ) {
 		case SDLK_F13: return key_name_f13;
 		case SDLK_F14: return key_name_f14;
 		case SDLK_F15: return key_name_f15;
-		case SDLK_NUMLOCK: return key_name_numlock;
+		case SDLK_NUMLOCKCLEAR: return key_name_numlock;
 		case SDLK_CAPSLOCK: return key_name_capslock;
-		case SDLK_SCROLLOCK: return key_name_scrollock;
+		case SDLK_SCROLLLOCK: return key_name_scrollock;
 		case SDLK_RSHIFT: return key_name_rshift;
 		case SDLK_LSHIFT: return key_name_lshift;
 		case SDLK_RCTRL: return key_name_rctrl;
 		case SDLK_LCTRL: return key_name_lctrl;
 		case SDLK_RALT: return key_name_ralt;
 		case SDLK_LALT: return key_name_lalt;
-		case SDLK_RMETA: return key_name_rmeta;
+/*		case SDLK_RMETA: return key_name_rmeta;
 		case SDLK_LMETA: return key_name_lmeta;
 		case SDLK_LSUPER: return key_name_lsuper;
-		case SDLK_RSUPER: return key_name_rsuper;
+		case SDLK_RSUPER: return key_name_rsuper;*/
 		case SDLK_MODE: return key_name_mode;
-		case SDLK_COMPOSE: return key_name_compose;
+/*		case SDLK_COMPOSE: return key_name_compose;*/
 		case SDLK_HELP: return key_name_help;
-		case SDLK_PRINT: return key_name_print;
+		case SDLK_PRINTSCREEN: return key_name_print;
 		case SDLK_SYSREQ: return key_name_sysreq;
-		case SDLK_BREAK: return key_name_break;
+/*		case SDLK_BREAK: return key_name_break;*/
 		case SDLK_MENU: return key_name_menu;
 		case SDLK_POWER: return key_name_power;
-		case SDLK_EURO: return key_name_euro;
+/*		case SDLK_EURO: return key_name_euro;*/
 		case SDLK_UNDO: return key_name_undo;
 	}
 	return NULL;

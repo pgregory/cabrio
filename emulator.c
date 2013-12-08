@@ -74,7 +74,7 @@ int emulator_exec( struct game *game ) {
 	char cmdline[CONFIG_MAX_CMD_LENGTH];
 #endif
 
-#ifdef __unix__
+#if defined(__unix__) || defined(_unix) || (defined(__APPLE__) && defined(__MACH__))
 	/* ensuring that argv[0] from the callee's perspective is the executable name,
 	 * so that the first param doesn't get swallowed */
 	params[count++] = game->emulator->executable;
@@ -117,7 +117,7 @@ int emulator_exec( struct game *game ) {
 		chdir( game->emulator->directory );
 	}
 	
-#ifdef __unix__
+#if defined(__unix__) || defined(_unix) || (defined(__APPLE__) && defined(__MACH__))
 	/* Terminate param list */
 	params[count] = NULL;
 

@@ -5,6 +5,7 @@
 
 int sdl_init( void );
 void sdl_free( void );
+void sdl_begin_frame( void );
 void sdl_frame_delay( void );
 void sdl_clear( void );
 void sdl_swap( void );

@@ -2319,7 +2319,7 @@ int config_create( void ) {
 				return -1;
 				break;
 			case ENOENT:
-#ifdef __unix__
+#if defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACOSX__))
 				if( mkdir( config_directory, 0755 ) != 0 ) {
 #else
 				if( mkdir( config_directory ) != 0 ) {

@@ -1,7 +1,11 @@
 #ifndef _OGL_H_
 #define _OGL_H_ 1
 
+#if defined(__APPLE__)
+#include <OpenGL/glu.h>
+#else
 #include <GL/glu.h>
+#endif
 
 #define X 0
 #define Y 1

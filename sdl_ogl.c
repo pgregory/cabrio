@@ -1,6 +1,6 @@
-#include <SDL/SDL_gfxPrimitives.h>
-#include <SDL/SDL_rotozoom.h>
-#include <SDL/SDL_image.h>
+/*#include <SDL2/SDL_gfxPrimitives.h>*/
+/*#include <SDL2/SDL_rotozoom.h>*/
+#include <SDL2/SDL_image.h>
 #include "sdl_ogl.h"
 #include "config.h"
 
@@ -17,7 +17,7 @@ SDL_Surface *sdl_load_image( const char *filename ) {
 	
 	load = IMG_Load( filename );
 	if( load != NULL ) {
-		conv = SDL_DisplayFormatAlpha( load );
+		conv = SDL_ConvertSurfaceFormat( load, SDL_PIXELFORMAT_ARGB8888, 0 );
 		SDL_FreeSurface( load );
 	}
 	else {
@@ -51,7 +51,7 @@ SDL_Surface *resize( SDL_Surface *surface ) {
 		/* Before we resize, check the result is definitely a power
 		 * of two, as this can go wrong due to rounding errors. */
 		do {
-			zoomSurfaceSize( surface->w, surface->h, sx, sy, &dx, &dy );
+			//zoomSurfaceSize( surface->w, surface->h, sx, sy, &dx, &dy );
 			if( (dx & (dx-1)) != 0 ) {
 				if( (dx & (dx-1)) == 1 ) {
 					sx =- 0.001;
@@ -70,9 +70,9 @@ SDL_Surface *resize( SDL_Surface *surface ) {
 			}
 	    } while( (dx & (dx-1)) != 0 && (dy & (dy-1)) != 0 );
 		
-		tmp = zoomSurface( surface, sx, sy, 0 );
-		resized = SDL_DisplayFormatAlpha( tmp );
-		SDL_FreeSurface( tmp );
+		//tmp = zoomSurface( surface, sx, sy, 0 );
+		//resized = SDL_DisplayFormatAlpha( tmp );
+		//SDL_FreeSurface( tmp );
 	}
 	
 	return resized;

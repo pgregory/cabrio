@@ -4,8 +4,8 @@
  * and a tutorial by Martin Bohme (boehme@inb.uni-luebeckREMOVETHIS.de)
  */
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_audio.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_audio.h>
 #include "video.h"
 #include "sound.h"
 #include "packet.h"
@@ -73,7 +73,7 @@ int video_init( void ) {
 	packet_queue_init( &audio_queue );
 	frame_queue_init( &video_queue );
 
-	url_set_interrupt_cb( video_stopped );
+	//url_set_interrupt_cb( video_stopped );
 	
 	return 0;
 }
@@ -109,7 +109,7 @@ void video_close( void ) {
 	audio_codec_context = NULL;
 	
 	if( format_context )
-		av_close_input_file( format_context );
+		avformat_close_input( format_context );
 	format_context = NULL;
 
 	if( video_buffer )
@@ -305,7 +305,7 @@ int video_open( const char *filename ) {
 	if( !filename )
 		return -1;
 		
-	if( av_open_input_file( &format_context, filename, NULL, 0, NULL ) != 0 ) {
+	if( avformat_open_input( &format_context, filename, NULL, NULL ) != 0 ) {
 		fprintf( stderr, "Warning: Error opening video file '%s'\n", filename );
 		return -1;
 	}
@@ -400,11 +400,13 @@ int video_open( const char *filename ) {
 	got_texture = 0;
 	
 	stop = 0;
-	reader_thread = SDL_CreateThread( video_reader_thread, NULL );
+	reader_thread = SDL_CreateThread( video_reader_thread, "Video Thread", NULL );
 	if( !reader_thread ) {
 		fprintf( stderr, "Warning: Couldn't start video reader thread\n" );
 		return -1;
 	}
+	static const AVIOInterruptCB int_cb={ video_stopped, NULL};
+	format_context->interrupt_callback=int_cb;
 		
 	return 0;
 }
